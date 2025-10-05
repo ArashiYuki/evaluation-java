@@ -1,0 +1,42 @@
+<html lang="fr">
+<head>
+    <title>Détails utilisateur</title>
+    <link href="/webjars/bootstrap/5.3.8/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/webjars/bootstrap-icons/1.11.1/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+<div>
+    <nav class="navbar navbar-expand-lg" style="background-color: #81b3d8;" data-bs-theme="light">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/users">Utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/tasks">Tâches</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="m-3">
+        <h1 th:if="user != null" th:text="${user.firstName} + ' ' + ${user.lastName.toUpperCase()}">Non identifié</h1>
+
+        <div class="d-flex justify-content-between flex-wrap">
+            <div class="card m-3" style="width: 45%;" th:each="task : ${tasks}">
+                <div class="card-header">
+                    <p th:text="${task.title}" class="m-0"></p>
+                </div>
+                <div class="card-body">
+                    <p class="card-text" th:text="${task.description}"></p>
+
+                    <p class="card-text" th:text="${task.completed} ? 'Fait' : 'Non fait'"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="webjars/bootstrap/5.3.8/js/bootstrap.min.js"></script>
+</body>
+</html>
