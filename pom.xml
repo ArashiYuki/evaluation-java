@@ -42,6 +42,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -75,7 +79,7 @@
         <dependency>
             <groupId>org.webjars.npm</groupId>
             <artifactId>bootstrap-icons</artifactId>
-            <version>1.11.1</version> <!-- Ou une version plus récente -->
+            <version>1.11.1</version>
         </dependency>
     </dependencies>
 

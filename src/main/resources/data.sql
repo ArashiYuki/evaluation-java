@@ -1,7 +1,7 @@
 -- USERS
-INSERT INTO users (ID, FIRST_NAME, LAST_NAME) VALUES (1, 'Hermione','Granger');
-INSERT INTO users (ID, FIRST_NAME, LAST_NAME) VALUES (2, 'Harry','Potter');
-INSERT INTO users (ID, FIRST_NAME, LAST_NAME) VALUES (3, 'Ron','Weasley');
+INSERT INTO users (ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, ROLE) VALUES (1, 'Hermione','Granger', 'hermione', '$2a$12$vw39d6YAO5c9gvirkL8AP.FQT/68eGN4CqqUMa3oYh4DA0m/wdbaK', 'ROLE_ADMIN');
+INSERT INTO users (ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, ROLE) VALUES (2, 'Harry','Potter', 'harry', '$2a$12$tumRz7zVGR/CXPg8IvhORO8ozI3tlqPFcmqhJ92nvMXV5dPbQ0BTi', 'ROLE_USER');
+INSERT INTO users (ID, FIRST_NAME, LAST_NAME, USERNAME, PASSWORD, ROLE) VALUES (3, 'Ron','Weasley', 'ron', '$2a$12$kovbSx6BX52BbAdDqS2KLezies1uQHOzHgTORJu6/mNmMmeswwi.C', 'ROLE_USER');
 
 -- TASKS
 INSERT INTO tasks (ID, OWNER_ID, TITLE, DESCRIPTION, COMPLETED) VALUES (1, 1, 'Rendre devoir', 'Potions', false);
