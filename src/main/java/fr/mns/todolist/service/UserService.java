@@ -8,8 +8,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,5 +50,20 @@ public class UserService implements UserDetailsService {
                 user.getPassword(),
                 authorities
         );
+    }
+
+    public boolean isAdmin(Principal principal) {
+        String username = principal.getName();
+        Optional<User> optionalUser = userRepository.findByUsername(username);
+
+        if (optionalUser.isEmpty()) {
+            return false;
+        }
+
+        if (optionalUser.get().getRole().equals("ROLE_ADMIN")) {
+            return true;
+        }
+
+        return false;
     }
 }

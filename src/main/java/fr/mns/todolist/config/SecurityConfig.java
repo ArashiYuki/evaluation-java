@@ -10,19 +10,26 @@ import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, AccessDeniedHandler accessDeniedHandler) throws Exception {
         http
                 .authorizeHttpRequests(auth -> auth
                         // Autorise les ressources statiques et WebJars
                         .requestMatchers("/webjars/**", "/css/**", "/js/**", "/images/**").permitAll()
                         // Autorise la page login sans authentification
                         .requestMatchers("/login").permitAll()
+                        // tasks/add accessible à tous les utilisateurs connectés
+                        .requestMatchers("/tasks/add").authenticated()
+                        // Les admins peuvent voir la liste des utilisateurs
+                        .requestMatchers("/users", "/tasks").hasRole("ADMIN")
+                        // La page de détail d’un user nécessite juste d’être connecté
+                        .requestMatchers("/users/**").authenticated()
                         // Toute autre requête nécessite authentification
                         .anyRequest().authenticated()
                 )
@@ -34,6 +41,9 @@ public class SecurityConfig {
                 .logout(logout -> logout
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
+                )
+                .exceptionHandling(ex -> ex
+                        .accessDeniedHandler(accessDeniedHandler)
                 );
 
         return http.build();

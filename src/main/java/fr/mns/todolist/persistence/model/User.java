@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name="users")
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "username")
+})
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
