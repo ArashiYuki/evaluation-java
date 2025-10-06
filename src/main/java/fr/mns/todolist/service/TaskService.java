@@ -4,7 +4,6 @@ import fr.mns.todolist.persistence.model.Task;
 import fr.mns.todolist.persistence.model.User;
 import fr.mns.todolist.persistence.repository.TaskRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
